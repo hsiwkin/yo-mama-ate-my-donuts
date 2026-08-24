@@ -12,7 +12,7 @@ export class Enemy {
   draw(p: p5) {
     p.fill("#A13D63");
 
-    p.square(this.x, this.y, 10);
+    p.square(this.x - this.size / 2, this.y - this.size / 2, this.size);
   }
 
   static drawAll(p: p5) {
