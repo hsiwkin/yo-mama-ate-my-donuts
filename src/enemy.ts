@@ -13,7 +13,7 @@ export class Enemy {
     p.fill("#A13D63");
 
     // p.square(this.x - this.size / 2, this.y - this.size / 2, this.size);
-    p.circle(this.x - Enemy.size / 2, this.y - Enemy.size / 2, Enemy.size);
+    p.circle(this.x, this.y, Enemy.size);
   }
 
   static drawAll(p: p5) {

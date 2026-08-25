@@ -15,13 +15,8 @@ export class Player {
     const nextX = this.x + dir.x * this.speed;
     const nextY = this.y + dir.y * this.speed;
 
-    if (nextX < half) this.x = half;
-    else if (nextX > p.width - half) this.x = p.width - half;
-    else this.x = nextX;
-
-    if (nextY < half) this.y = half;
-    else if (nextY > p.height - half) this.y = p.height - half;
-    else this.y = nextY;
+    this.x = p.constrain(nextX, half, p.width - half);
+    this.y = p.constrain(nextY, half, p.height - half);
 
     Enemy.allEnemies
       .filter((enemy) => {
