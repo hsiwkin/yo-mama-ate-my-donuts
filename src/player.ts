@@ -10,9 +10,18 @@ export class Player {
     readonly sizeIncrease = 10,
   ) {}
 
-  update(dir: { x: number; y: number }) {
-    this.x += dir.x * this.speed;
-    this.y += dir.y * this.speed;
+  update(dir: { x: number; y: number }, p: p5) {
+    const half = this.size / 2;
+    const nextX = this.x + dir.x * this.speed;
+    const nextY = this.y + dir.y * this.speed;
+
+    if (nextX < half) this.x = half;
+    else if (nextX > p.width - half) this.x = p.width - half;
+    else this.x = nextX;
+
+    if (nextY < half) this.y = half;
+    else if (nextY > p.height - half) this.y = p.height - half;
+    else this.y = nextY;
 
     Enemy.allEnemies
       .filter((enemy) => {
