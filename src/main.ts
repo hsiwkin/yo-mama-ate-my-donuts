@@ -17,7 +17,7 @@ const sketch = (p: p5) => {
   p.draw = () => {
     p.background("#F7A278");
 
-    player.update(readMoveInput(p));
+    player.update(readMoveInput(p), p);
     player.draw(p);
     Enemy.drawAll(p);
   };
