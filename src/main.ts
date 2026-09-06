@@ -4,17 +4,22 @@ import { readMoveInput } from "./input";
 import { Player } from "./player";
 import { Enemy } from "./enemy";
 import mamaUrl from "../assets/mama.png";
+import donutUrl from "../assets/donut.png";
 
 const sketch = (p: p5) => {
   let player: Player;
   let mama: p5.Image;
+  let donut: p5.Image;
 
   p.preload = () => {
+    console.log("mamaUrl", mamaUrl);
     mama = p.loadImage(mamaUrl);
+    donut = p.loadImage(donutUrl);
   };
 
   p.setup = () => {
     p.createCanvas(p.windowWidth, p.windowHeight);
+    p.imageMode(p.CENTER);
     resetGame();
   };
 
@@ -51,7 +56,7 @@ const sketch = (p: p5) => {
     player.update(readMoveInput(p), p);
 
     player.draw(p, mama);
-    Enemy.drawAll(p);
+    Enemy.drawAll(p, donut);
   };
 
   const resetGame = () => {
