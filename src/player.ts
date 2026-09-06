@@ -32,8 +32,15 @@ export class Player {
       });
   }
 
-  draw(p: p5) {
+  draw(p: p5, sprite: p5.Image) {
     p.fill("white");
-    p.circle(this.x, this.y, this.size);
+    // p.circle(this.x, this.y, this.size);
+    p.image(
+      sprite,
+      this.x - this.size / 2,
+      this.y - this.size / 2,
+      this.size,
+      this.size,
+    );
   }
 }
