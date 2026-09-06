@@ -2,7 +2,7 @@ import p5 from "p5";
 
 export class Enemy {
   static allEnemies: Enemy[] = [];
-  static size = 10;
+  private static size = 10;
 
   constructor(
     public x: number,
@@ -12,7 +12,6 @@ export class Enemy {
   draw(p: p5) {
     p.fill("#A13D63");
 
-    // p.square(this.x - this.size / 2, this.y - this.size / 2, this.size);
     p.circle(this.x, this.y, Enemy.size);
   }
 
@@ -32,6 +31,7 @@ export class Enemy {
   }
 
   static initializeAll(p: p5, count: number): Enemy[] {
+    Enemy.allEnemies = [];
     for (let i = 1; i <= count; ++i) {
       Enemy.initialize(p);
     }
@@ -43,5 +43,9 @@ export class Enemy {
     this.allEnemies = this.allEnemies.filter(
       (enemy) => enemy !== enemyToBeKilled,
     );
+  }
+
+  static count(): number {
+    return Enemy.allEnemies.length;
   }
 }
