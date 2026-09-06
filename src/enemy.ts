@@ -2,22 +2,20 @@ import p5 from "p5";
 
 export class Enemy {
   static allEnemies: Enemy[] = [];
-  private static size = 10;
+  private static size = 20;
 
   constructor(
     public x: number,
     public y: number,
   ) {}
 
-  draw(p: p5) {
-    p.fill("#A13D63");
-
-    p.circle(this.x, this.y, Enemy.size);
+  draw(p: p5, sprite: p5.Image) {
+    p.image(sprite, this.x, this.y, Enemy.size, Enemy.size);
   }
 
-  static drawAll(p: p5) {
+  static drawAll(p: p5, sprite: p5.Image) {
     for (const enemy of Enemy.allEnemies) {
-      enemy.draw(p);
+      enemy.draw(p, sprite);
     }
   }
 
