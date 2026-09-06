@@ -3,9 +3,15 @@ import "./style.css";
 import { readMoveInput } from "./input";
 import { Player } from "./player";
 import { Enemy } from "./enemy";
+import mamaUrl from "../assets/mama.png";
 
 const sketch = (p: p5) => {
   let player: Player;
+  let mama: p5.Image;
+
+  p.preload = () => {
+    mama = p.loadImage(mamaUrl);
+  };
 
   p.setup = () => {
     p.createCanvas(p.windowWidth, p.windowHeight);
@@ -44,7 +50,7 @@ const sketch = (p: p5) => {
 
     player.update(readMoveInput(p), p);
 
-    player.draw(p);
+    player.draw(p, mama);
     Enemy.drawAll(p);
   };
 
