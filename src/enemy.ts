@@ -1,8 +1,12 @@
 import p5 from "p5";
+import { REL, scale } from "./scale";
 
 export class Enemy {
   static allEnemies: Enemy[] = [];
-  private static size = 20;
+
+  private static sizeOf(p: p5) {
+    return REL.donut * scale(p);
+  }
 
   constructor(
     public x: number,
@@ -10,7 +14,8 @@ export class Enemy {
   ) {}
 
   draw(p: p5, sprite: p5.Image) {
-    p.image(sprite, this.x, this.y, Enemy.size, Enemy.size);
+    const size = Enemy.sizeOf(p);
+    p.image(sprite, this.x, this.y, size, size);
   }
 
   static drawAll(p: p5, sprite: p5.Image) {
@@ -20,8 +25,9 @@ export class Enemy {
   }
 
   static initialize(p: p5): Enemy {
-    const x = p.random(Enemy.size / 2, p.width - Enemy.size / 2);
-    const y = p.random(Enemy.size / 2, p.height - Enemy.size / 2);
+    const size = Enemy.sizeOf(p);
+    const x = p.random(size / 2, p.width - size / 2);
+    const y = p.random(size / 2, p.height - size / 2);
 
     const enemy = new Enemy(x, y);
     Enemy.allEnemies.push(enemy);

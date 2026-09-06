@@ -5,6 +5,8 @@ import { Player } from "./player";
 import { Enemy } from "./enemy";
 import mamaUrl from "../assets/mama.png";
 import donutUrl from "../assets/donut.png";
+import { gameOverRender } from "./screens";
+import { REL, scale } from "./scale";
 
 const sketch = (p: p5) => {
   let player: Player;
@@ -12,7 +14,6 @@ const sketch = (p: p5) => {
   let donut: p5.Image;
 
   p.preload = () => {
-    console.log("mamaUrl", mamaUrl);
     mama = p.loadImage(mamaUrl);
     donut = p.loadImage(donutUrl);
   };
@@ -25,7 +26,7 @@ const sketch = (p: p5) => {
 
   p.draw = () => {
     if (Enemy.count() === 0) {
-      gameOverRender();
+      gameOverRender(p);
     } else {
       gameInProgressRender();
     }
@@ -41,15 +42,6 @@ const sketch = (p: p5) => {
     p.resizeCanvas(p.windowWidth, p.windowHeight);
   };
 
-  const gameOverRender = () => {
-    p.background("#7EB77F");
-
-    p.fill("#F92A82");
-    p.textSize(100);
-    p.textAlign(p.CENTER, p.CENTER);
-    p.text("Game Over!", p.width / 2, p.height / 2);
-  };
-
   const gameInProgressRender = () => {
     p.background("#F7A278");
 
@@ -60,7 +52,7 @@ const sketch = (p: p5) => {
   };
 
   const resetGame = () => {
-    player = new Player(p.width / 2, p.height / 2);
+    player = new Player(p.width / 2, p.height / 2, REL.mama * scale(p));
     Enemy.initializeAll(p, 30);
   };
 };
