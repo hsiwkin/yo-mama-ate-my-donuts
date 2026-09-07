@@ -39,3 +39,4 @@ Thumbs.db
 
 # Agent
 AGENTS.md
+.cursor/*
