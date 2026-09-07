@@ -8,13 +8,16 @@ export class Player {
   constructor(
     public x: number,
     public y: number,
-    public size: number,
+    public relativeSize: number,
   ) {}
 
+  getSize(p: p5) {
+    return this.relativeSize * scale(p);
+  }
+
   update(dir: { x: number; y: number }, p: p5) {
-    const half = this.size / 2;
+    const half = this.getSize(p) / 2;
     const speed = REL.speed * scale(p);
-    const sizeIncrease = REL.sizeIncrease * scale(p);
     const nextX = this.x + dir.x * speed;
     const nextY = this.y + dir.y * speed;
 
@@ -27,17 +30,17 @@ export class Player {
           Math.pow(donut.x - this.x, 2) + Math.pow(donut.y - this.y, 2),
         );
 
-        return distance <= this.size / 2;
+        return distance <= this.getSize(p) / 2;
       })
       .forEach((donut: Donut) => {
-        this.size += sizeIncrease;
+        this.relativeSize += REL.sizeIncrease;
         this.eatenDonutsCount++;
         Donut.eat(donut);
       });
   }
 
   clamp(p: p5) {
-    const half = this.size / 2;
+    const half = this.getSize(p) / 2;
     this.x = p.constrain(this.x, half, p.width - half);
     this.y = p.constrain(this.y, half, p.height - half);
   }
@@ -45,10 +48,14 @@ export class Player {
   draw(p: p5, sprite: p5.Image) {
     p.textAlign(p.CENTER, p.CENTER);
 
-    p.image(sprite, this.x, this.y, this.size, this.size);
+    p.image(sprite, this.x, this.y, this.getSize(p), this.getSize(p));
     p.fill("#F92A82");
     p.noStroke();
-    p.textSize(this.size * 0.1);
-    p.text(String(this.eatenDonutsCount), this.x, this.y + this.size * 0.28);
+    p.textSize(this.getSize(p) * 0.1);
+    p.text(
+      String(this.eatenDonutsCount),
+      this.x,
+      this.y + this.getSize(p) * 0.28,
+    );
   }
 }
