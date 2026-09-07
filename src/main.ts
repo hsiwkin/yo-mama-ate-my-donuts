@@ -56,7 +56,7 @@ const sketch = (p: p5) => {
   };
 
   const resetGame = () => {
-    player = new Player(p.width / 2, p.height / 2, REL.mama * scale(p));
+    player = new Player(p.width / 2, p.height / 2, REL.mama);
     Donut.initializeAll(p, 30);
   };
 };
