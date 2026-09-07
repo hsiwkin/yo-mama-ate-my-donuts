@@ -36,6 +36,12 @@ export class Player {
       });
   }
 
+  clamp(p: p5) {
+    const half = this.size / 2;
+    this.x = p.constrain(this.x, half, p.width - half);
+    this.y = p.constrain(this.y, half, p.height - half);
+  }
+
   draw(p: p5, sprite: p5.Image) {
     p.textAlign(p.CENTER, p.CENTER);
 

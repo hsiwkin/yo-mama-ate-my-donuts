@@ -42,8 +42,8 @@ const sketch = (p: p5) => {
 
   p.windowResized = () => {
     p.resizeCanvas(p.windowWidth, p.windowHeight);
-    // TODO: clamp player + donuts to the new canvas (Player.clamp / Donut.clampAll).
-    // update() already constrains mama while playing; donuts keep old x,y and can sit off-screen.
+    player.clamp(p);
+    Donut.clampAll(p);
   };
 
   const gameInProgressRender = () => {

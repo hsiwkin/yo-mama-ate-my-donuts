@@ -18,6 +18,18 @@ export class Donut {
     p.image(sprite, this.x, this.y, size, size);
   }
 
+  clamp(p: p5) {
+    const half = Donut.sizeOf(p) / 2;
+    this.x = p.constrain(this.x, half, p.width - half);
+    this.y = p.constrain(this.y, half, p.height - half);
+  }
+
+  static clampAll(p: p5) {
+    for (const donut of Donut.all) {
+      donut.clamp(p);
+    }
+  }
+
   static drawAll(p: p5, sprite: p5.Image) {
     for (const donut of Donut.all) {
       donut.draw(p, sprite);
