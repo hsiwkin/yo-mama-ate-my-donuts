@@ -1,8 +1,8 @@
 import p5 from "p5";
 import "./style.css";
 import { readMoveInput } from "./input";
-import { Player } from "./player";
-import { Donut } from "./donut";
+import { Player } from "./entities/player";
+import { Donut } from "./entities/donut";
 import mamaUrl from "../assets/mama.png";
 import donutUrl from "../assets/donut.png";
 import { gameOverRender } from "./screens";

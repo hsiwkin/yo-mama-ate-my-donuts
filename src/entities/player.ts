@@ -1,6 +1,6 @@
 import p5 from "p5";
 import { Donut } from "./donut";
-import { REL, scale } from "./scale";
+import { REL, scale } from "../scale";
 
 export class Player {
   constructor(

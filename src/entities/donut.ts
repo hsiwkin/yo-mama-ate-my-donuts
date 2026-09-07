@@ -1,5 +1,5 @@
 import p5 from "p5";
-import { REL, scale } from "./scale";
+import { REL, scale } from "../scale";
 
 export class Donut {
   static all: Donut[] = [];
