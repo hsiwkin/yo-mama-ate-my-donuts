@@ -33,7 +33,9 @@ const sketch = (p: p5) => {
   };
 
   p.keyPressed = () => {
-    if (p.key.toLowerCase() === "r") {
+    const key = p.key.toLowerCase();
+
+    if (key === "r") {
       resetGame();
     }
   };
