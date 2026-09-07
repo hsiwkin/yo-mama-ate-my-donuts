@@ -2,7 +2,7 @@ import p5 from "p5";
 import "./style.css";
 import { readMoveInput } from "./input";
 import { Player } from "./player";
-import { Enemy } from "./enemy";
+import { Donut } from "./donut";
 import mamaUrl from "../assets/mama.png";
 import donutUrl from "../assets/donut.png";
 import { gameOverRender } from "./screens";
@@ -25,7 +25,7 @@ const sketch = (p: p5) => {
   };
 
   p.draw = () => {
-    if (Enemy.count() === 0) {
+    if (Donut.count() === 0) {
       gameOverRender(p);
     } else {
       gameInProgressRender();
@@ -40,7 +40,7 @@ const sketch = (p: p5) => {
 
   p.windowResized = () => {
     p.resizeCanvas(p.windowWidth, p.windowHeight);
-    // TODO: clamp player + donuts to the new canvas (Player.clamp / Enemy.clampAll).
+    // TODO: clamp player + donuts to the new canvas (Player.clamp / Donut.clampAll).
     // update() already constrains mama while playing; donuts keep old x,y and can sit off-screen.
   };
 
@@ -50,12 +50,12 @@ const sketch = (p: p5) => {
     player.update(readMoveInput(p), p);
 
     player.draw(p, mama);
-    Enemy.drawAll(p, donut);
+    Donut.drawAll(p, donut);
   };
 
   const resetGame = () => {
     player = new Player(p.width / 2, p.height / 2, REL.mama * scale(p));
-    Enemy.initializeAll(p, 30);
+    Donut.initializeAll(p, 30);
   };
 };
 
